@@ -1,8 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:laser_slides/widgets/custom_textfield.dart';
+import 'package:laser_slides/widgets/dialog_textfield.dart';
 
 
+// ignore: must_be_immutable
 class CustomButton extends StatefulWidget {
   static const double _shadowHeight = 8;
 
@@ -95,7 +95,7 @@ Widget build(BuildContext context) {
                    child: Center(
                      child: Text(
                        "Slide ${widget.index+1}",
-                       style: TextStyle(
+                       style: const TextStyle(
                          color: Colors.white,
                          fontSize: 22,
                        ),
@@ -115,12 +115,12 @@ Widget build(BuildContext context) {
 
 Widget contentBox(context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
+      padding: const EdgeInsets.symmetric(vertical: 25,horizontal: 10),
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
         color: Colors.white,
         borderRadius: BorderRadius.circular(10.0),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Colors.black,
             offset: Offset(0, 10),
@@ -131,12 +131,14 @@ Widget contentBox(context) {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          CustomTextField(hint: "Slide 1", title: "Label"),
-          SizedBox(height: 15.0),
-          CustomTextField(hint: "Btn 1/2", title: "Button Pressed"),
-          SizedBox(height: 15.0),
-          CustomTextField(hint: "Btn 1/1", title: "Button released"),
-          SizedBox(height: 20.0),
+          const Text('Edit Button',style: TextStyle(fontSize: 20,fontFamily: 'sen',fontWeight: FontWeight.bold),),
+          const SizedBox(height: 10,),
+          CustomDialogTextField(hint: "Slide 1", title: "Label"),
+          const SizedBox(height: 15.0),
+          CustomDialogTextField(hint: "Btn 1/2", title: "Button Pressed"),
+          const SizedBox(height: 15.0),
+          CustomDialogTextField(hint: "Btn 1/1", title: "Button released"),
+          const SizedBox(height: 20.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -150,14 +152,14 @@ Widget contentBox(context) {
                   decoration: BoxDecoration(
                     border: Border.all(color:const Color.fromARGB(255, 62, 62, 62) ),
                     color: const Color.fromARGB(255, 247, 247, 247),
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Text("Save",style: TextStyle(fontFamily: 'sen',fontSize: 14,fontWeight: FontWeight.bold),),
                   ),
                 ),
               ),
-              SizedBox(width: 10.0),
+              const SizedBox(width: 10.0),
               GestureDetector(
                 onTap: (){
                   Navigator.of(context).pop();
@@ -168,9 +170,9 @@ Widget contentBox(context) {
                   decoration: BoxDecoration(
                     border: Border.all(color:const Color.fromARGB(255, 62, 62, 62) ),
                     color: const Color.fromARGB(255, 247, 247, 247),
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Text("Cancel",style: TextStyle(fontFamily: 'sen',fontSize: 14,fontWeight: FontWeight.bold),),
                   ),
                 ),

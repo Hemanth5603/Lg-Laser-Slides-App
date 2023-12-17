@@ -19,8 +19,8 @@ class _OnBoardingState extends State<OnBoarding> {
 
   @override
   void initState() {
-    image1 = Image.asset("assets/laser1.jpg");
-    image2 = Image.asset("assets/laser2.png");
+    image1 = Image.asset("assets/images/laser1.jpg");
+    image2 = Image.asset("assets/images/lg1.png");
     super.initState();
   }
 
@@ -52,8 +52,8 @@ class _OnBoardingState extends State<OnBoarding> {
               dragStartBehavior: DragStartBehavior.start,
               scrollDirection: Axis.horizontal,
               children: [
-                onBoardpage(sh,sw,image1.image,"Welcome to Laser Slides ,","Your Ultimate Presentation Companion!","Welcome aboard Laser Slides, where innovation meets simplicity! Whether you're a seasoned presenter or a first-timer, our app is designed to revolutionize the way you interact with your laser presentations. Say goodbye to traditional slideshows and hello to seamless, button-controlled presentations that captivate your audience."),
-                onBoardpage(sh,sw,image2.image,"","",""),
+                onBoardpage(sh,sw,image1.image,"Welcome to Laser Slides ","Your Ultimate Presentation Companion!","Welcome aboard Laser Slides, where innovation meets simplicity! Whether you're a seasoned presenter or a first-timer, our app is designed to revolutionize the way you interact with your laser presentations. Say goodbye to traditional slideshows and hello to seamless, button-controlled presentations that captivate your audience."),
+                onBoardpage(sh,sw,image2.image,"Powered by Liquid Galaxy","Build by GDG Lleida","Liquid Galaxy is a remarkable panoramic system that is tremendously compelling. It started off as a Google 20% project created by Google engineer Jason Holt to run Google Earth across a cluster of PC's and it has grown from there! \n\n Liquid Galaxy hardware consists of 3 or more computers driving multiple displays, usually one computer for each display. Liquid Galaxy applications have been developed using a master/slave architecture."),
               ],
             ),
             Positioned(
@@ -79,7 +79,7 @@ class _OnBoardingState extends State<OnBoarding> {
                 //margin:EdgeInsets.only(left: 10,right: 10),
                 decoration:const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
-                  color:Color.fromARGB(187, 244, 244, 244)
+                  color:Color.fromARGB(230, 244, 244, 244)
                 ),
                 child: InkWell(
                   onTap: (){
@@ -114,8 +114,8 @@ Widget onBoardpage(h,w,path,header1,header2,description){
             begin: FractionalOffset.topCenter,
             end: FractionalOffset.bottomCenter,
             colors: [
-              Color.fromARGB(148, 0, 0, 0),
-              Color.fromARGB(134, 0, 0, 0),
+              Color.fromARGB(0, 0, 0, 0),
+              Color.fromARGB(193, 0, 0, 0),
             ],
             stops: [0.0,.9]
           )
@@ -129,9 +129,9 @@ Widget onBoardpage(h,w,path,header1,header2,description){
           child:Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(header1,style: const TextStyle(fontSize: 29,color:Colors.white,fontWeight: FontWeight.bold,fontFamily: 'sen'),),
+              Text(header1,style: const TextStyle(fontSize: 27,color:Colors.white,fontWeight: FontWeight.bold,fontFamily: 'sen'),),
               Text(header2,style: const TextStyle(fontSize: 20,color:Colors.white,fontFamily: 'sen'),),
-              const SizedBox(height: 10,),
+              const SizedBox(height: 25,),
               Text(description,
                 style: const TextStyle(fontSize: 12,color:Color.fromARGB(201, 255, 255, 255),fontFamily: 'sen'), 
                 maxLines: 5, 

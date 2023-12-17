@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:laser_slides/constants/app_constants.dart';
-import 'package:laser_slides/views/about.dart';
-import 'package:laser_slides/views/home_page.dart';
+import 'package:laser_slides/views/tabs/about.dart';
+import 'package:laser_slides/views/tabs/home_page.dart';
 import 'package:laser_slides/widgets/custom_textfield.dart';
 
 class Home extends StatefulWidget {
@@ -27,9 +27,10 @@ class _HomeState extends State<Home> {
     double h = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         actions: [
           InkWell(
-              child: Padding(
+              child:const  Padding(
               padding: EdgeInsets.all(8.0),
               child: Icon(Icons.settings),
             ),
@@ -37,9 +38,9 @@ class _HomeState extends State<Home> {
               Get.bottomSheet(
                 Container(
                   height: h * 0.8,
-                  padding: EdgeInsets.all(10),
+                  padding:const  EdgeInsets.all(10),
                   decoration:const BoxDecoration(
-                    color: const Color.fromARGB(255, 241, 241, 241),
+                    color: Color.fromARGB(255, 241, 241, 241),
                     borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15))
                   ),
                   child: SingleChildScrollView(
@@ -65,25 +66,25 @@ class _HomeState extends State<Home> {
                                   fontWeight: FontWeight.bold
                                 ),
                               ),
-                              SizedBox(height:15,),
-                              Container(
+                              const SizedBox(height:15,),
+                              SizedBox(
                                 height: h * 0.46,
                                 child: ListView(
                                   children: [
                                     const Text("Outgoing",style: TextStyle(fontFamily: 'sen',fontSize: 20,fontWeight: FontWeight.bold),),
                                     const SizedBox(height: 10,),
                                     CustomTextField(title:"IP Address",hint:"127.0.0.1"),
-                                    SizedBox(height: 15,),
+                                    const SizedBox(height: 15,),
                                     CustomTextField(title:"PORT",hint:"8000"),
-                                    SizedBox(height: 15,),
+                                    const SizedBox(height: 15,),
                                     CustomTextField(title:"Start Path",hint:"/"),
-                                    SizedBox(height: 15,),
-                                    Text("Incomming",style: TextStyle(fontFamily: 'sen',fontSize: 20,fontWeight: FontWeight.bold),),
-                                    SizedBox(height: 10,),
+                                    const SizedBox(height: 20,),
+                                    const Text("Incomming",style: TextStyle(fontFamily: 'sen',fontSize: 20,fontWeight: FontWeight.bold),),
+                                    const SizedBox(height: 10,),
                                     CustomTextField(title:"IP Address",hint:"127.0.0.1"),
-                                    SizedBox(height: 15,),
+                                    const SizedBox(height: 15,),
                                     CustomTextField(title:"PORT",hint:"8000"),
-                                    SizedBox(height: 15,),
+                                    const SizedBox(height: 15,),
                                     GestureDetector(
                                       onTap: (){
                                         Get.back();
@@ -94,15 +95,13 @@ class _HomeState extends State<Home> {
                                           decoration: BoxDecoration(
                                             border: Border.all(color:const Color.fromARGB(255, 62, 62, 62) ),
                                             color: const Color.fromARGB(255, 247, 247, 247),
-                                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                                            borderRadius:const  BorderRadius.all(Radius.circular(10)),
                                           ),
-                                          child: Center(
+                                          child:const  Center(
                                             child: Text("Save Changes",style: TextStyle(fontFamily: 'sen',fontSize: 20,fontWeight: FontWeight.bold),),
                                           ),
                                         ),
-                                      
-                                    )
-                                                    
+                                    )                
                                   ],
                                 ),
                               ),

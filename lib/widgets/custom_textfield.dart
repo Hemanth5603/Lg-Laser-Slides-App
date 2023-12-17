@@ -17,33 +17,31 @@ class CustomTextField extends StatefulWidget {
 class CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-    child: Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
 
-        Text(widget.title,style: TextStyle(fontFamily: 'sen',fontSize: 16,fontWeight: FontWeight.bold),),
-        SizedBox(height: 5,),
+        Text(widget.title,style: const TextStyle(fontFamily: 'sen',fontSize: 16,fontWeight: FontWeight.bold),),
+        const SizedBox(height: 5,),
         TextField(
-            style: TextStyle(color: Colors.white), 
+            style:const TextStyle(color: Colors.white), 
             decoration: InputDecoration(
               hintText: widget.hint,
-              hintStyle: TextStyle(color: Colors.grey), 
+              hintStyle: const TextStyle(color: Colors.grey), 
               filled: true,
               fillColor: Colors.grey[800],
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.0),
-                borderSide: BorderSide(color: Colors.grey), 
+                borderSide: const BorderSide(color: Colors.grey), 
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.0),
-                borderSide: BorderSide(color: Colors.blue),
+                borderSide: const BorderSide(color: Colors.blue),
               ),
             ),
           ),
       ],
-    ),
-  );
+    );
   }
 }
 

@@ -10,6 +10,7 @@ dependencies:
   animated_splash_screen: ^1.3.0
   flutter:
     sdk: flutter
+  flutter_launcher_icons: ^0.13.1
   get: ^4.6.6
   smooth_page_indicator: ^1.1.0
 
@@ -18,8 +19,15 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.0
 
+flutter_icons:
+  image_path: "assets/icons/appIcon.jpg" 
+  android: true
+  ios: true
+
 flutter:
   uses-material-design: true
+  
+
 
   fonts:
     - family: sen

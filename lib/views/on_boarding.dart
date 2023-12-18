@@ -20,7 +20,7 @@ class _OnBoardingState extends State<OnBoarding> {
   @override
   void initState() {
     image1 = Image.asset("assets/images/laser1.jpg");
-    image2 = Image.asset("assets/images/lg1.png");
+    image2 = Image.asset("assets/images/lg2.png");
     super.initState();
   }
 
@@ -72,10 +72,10 @@ class _OnBoardingState extends State<OnBoarding> {
             ),
             Positioned(
               bottom: 15,
-              left: sw/10 - 10,
+              //left: sw/10 - 10,
               child: Container(
                 height: 50,
-                width: sw-50,
+                width: sw,
                 //margin:EdgeInsets.only(left: 10,right: 10),
                 decoration:const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),

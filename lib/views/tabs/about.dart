@@ -22,11 +22,11 @@ class _AboutState extends State<About> {
               children: [
                 Container(
                   width: w,
-                  height: h *0.2,
+                  height:MediaQuery.of(context).size.width > 1000 ? h *0.5 : h * 0.2,
                   decoration:const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage("assets/images/about.jpg"),
-                      fit: BoxFit.cover
+                      fit: BoxFit.fill
                     )
                   ),
                 ),

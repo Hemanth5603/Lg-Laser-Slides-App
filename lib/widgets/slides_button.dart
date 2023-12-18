@@ -22,7 +22,7 @@ double _position = 6;
 
 @override
 Widget build(BuildContext context) {
- final double _height = 100 - CustomButton._shadowHeight;
+ final double _height = 120 - CustomButton._shadowHeight;
  return Scaffold(
    body: Center(
      child: GestureDetector(
@@ -63,14 +63,14 @@ Widget build(BuildContext context) {
         },
          child: SizedBox(
            height: _height + CustomButton._shadowHeight,
-           width: 100,
+           width: 120,
            child: Stack(
              children: [
                Positioned(
                  bottom: 0,
                  child: Container(
                    height: _height,
-                   width: 100,
+                   width: 120,
                    decoration: const BoxDecoration(
                      color: Color.fromARGB(255, 28, 28, 28),
                      borderRadius: BorderRadius.all(
@@ -85,7 +85,7 @@ Widget build(BuildContext context) {
                  duration:const Duration(milliseconds: 70),
                  child: Container(
                    height: _height,
-                   width: 100,
+                   width: 120,
                    decoration: const BoxDecoration(
                      color: Color.fromARGB(213, 55, 55, 55), 
                      borderRadius: BorderRadius.all(
@@ -116,6 +116,7 @@ Widget build(BuildContext context) {
 Widget contentBox(context) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 25,horizontal: 10),
+      width: MediaQuery.of(context).size.width > 1000 ? 600 : 300 ,
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
         color: Colors.white,

@@ -17,8 +17,8 @@ class _HomePageState extends State<HomePage> {
           padding:const EdgeInsets.all(0),
           child: GridView.builder(
             itemCount: 18,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: MediaQuery.of(context).size.width > 1000 ? 6 : 3,
               crossAxisSpacing: 0,
               mainAxisSpacing: 0,
             ),

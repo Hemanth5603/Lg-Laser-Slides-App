@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:laser_slides/constants/app_constants.dart';
+import 'package:laser_slides/controllers/osc_controller.dart';
 import 'package:laser_slides/views/tabs/about.dart';
 import 'package:laser_slides/views/tabs/home_page.dart';
 import 'package:laser_slides/widgets/custom_textfield.dart';
@@ -19,6 +20,7 @@ class _HomeState extends State<Home> {
     const HomePage(),
     const About()
   ];
+  OSCController oscController = Get.put(OSCController());
 
 
   @override
@@ -73,34 +75,40 @@ class _HomeState extends State<Home> {
                                   children: [
                                     const Text("Outgoing",style: TextStyle(fontFamily: 'sen',fontSize: 20,fontWeight: FontWeight.bold),),
                                     const SizedBox(height: 10,),
-                                    CustomTextField(title:"IP Address",hint:"127.0.0.1"),
+                                    CustomTextField(title:"IP Address",hint:"127.0.0.1",textController: oscController.outgoingIpController,),
                                     const SizedBox(height: 15,),
-                                    CustomTextField(title:"PORT",hint:"8000"),
+                                    CustomTextField(title:"PORT",hint:"8000",textController: oscController.outPortController),
                                     const SizedBox(height: 15,),
-                                    CustomTextField(title:"Start Path",hint:"/"),
+                                    CustomTextField(title:"Start Path",hint:"/",textController: oscController.startPathController),
                                     const SizedBox(height: 20,),
                                     const Text("Incomming",style: TextStyle(fontFamily: 'sen',fontSize: 20,fontWeight: FontWeight.bold),),
                                     const SizedBox(height: 10,),
-                                    CustomTextField(title:"IP Address",hint:"127.0.0.1"),
+                                    CustomTextField(title:"IP Address",hint:"127.0.0.1",textController: oscController.incomingIpController),
                                     const SizedBox(height: 15,),
-                                    CustomTextField(title:"PORT",hint:"8000"),
+                                    CustomTextField(title:"PORT",hint:"8000",textController: oscController.inPortController),
                                     const SizedBox(height: 15,),
                                     GestureDetector(
                                       onTap: (){
                                         Get.back();
                                       },
-                                      child:Container(
-                                        width: w * 0.95,
-                                          height: h * 0.07,
-                                          decoration: BoxDecoration(
-                                            border: Border.all(color:const Color.fromARGB(255, 62, 62, 62) ),
-                                            color: const Color.fromARGB(255, 247, 247, 247),
-                                            borderRadius:const  BorderRadius.all(Radius.circular(10)),
+                                      child:GestureDetector(
+                                        child: Container(
+                                          width: w * 0.95,
+                                            height: h * 0.07,
+                                            decoration: BoxDecoration(
+                                              border: Border.all(color:const Color.fromARGB(255, 62, 62, 62) ),
+                                              color: const Color.fromARGB(255, 247, 247, 247),
+                                              borderRadius:const  BorderRadius.all(Radius.circular(10)),
+                                            ),
+                                            child:const  Center(
+                                              child: Text("Save Changes",style: TextStyle(fontFamily: 'sen',fontSize: 20,fontWeight: FontWeight.bold),),
+                                            ),
                                           ),
-                                          child:const  Center(
-                                            child: Text("Save Changes",style: TextStyle(fontFamily: 'sen',fontSize: 20,fontWeight: FontWeight.bold),),
-                                          ),
-                                        ),
+                                          onTap: (){
+                                            print(oscController.outgoingIpController.text);
+                                            Get.back();
+                                          },
+                                      ),
                                     )                
                                   ],
                                 ),

@@ -5,10 +5,12 @@ class CustomTextField extends StatefulWidget {
   CustomTextField({
     super.key,
     required this.hint,
-    required this.title
+    required this.title,
+    required this.textController,
   });
   String title;
   String hint;
+  TextEditingController textController;
 
   @override
   State<CustomTextField> createState() => CustomTextFieldState();
@@ -24,6 +26,7 @@ class CustomTextFieldState extends State<CustomTextField> {
         Text(widget.title,style: const TextStyle(fontFamily: 'sen',fontSize: 16,fontWeight: FontWeight.bold),),
         const SizedBox(height: 5,),
         TextField(
+          controller: widget.textController,
             style:const TextStyle(color: Colors.white), 
             decoration: InputDecoration(
               hintText: widget.hint,

@@ -14,8 +14,6 @@ class AppConstants{
     icon: Icon(Icons.group_outlined),
     label: 'About',
   ),
-
 ];
-  
 }
 

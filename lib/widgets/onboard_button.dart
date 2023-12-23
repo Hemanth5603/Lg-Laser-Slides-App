@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:laser_slides/controllers/osc_controller.dart';
 
 
 class OnBoardButton extends StatefulWidget {
   static const double _shadowHeight = 8;
-
   const OnBoardButton({super.key});
-
   @override
   State<OnBoardButton> createState() => _OnBoardButtonState();
 }
 
 class _OnBoardButtonState extends State<OnBoardButton> {
-double _position = 8;
+
+  double _position = 8;
+  OSCController oscController = Get.put(OSCController());
+
+  @override
+  void dispose() {
+    oscController.client.close();
+    super.dispose(); 
+  }
 
 @override
 Widget build(BuildContext context) {
- final double _height = 40 - OnBoardButton._shadowHeight;
+ const double height = 40 - OnBoardButton._shadowHeight;
  return Scaffold(
    body: Center(
      child: GestureDetector(
@@ -35,14 +43,14 @@ Widget build(BuildContext context) {
          });
        },
        child: SizedBox(
-         height: _height + OnBoardButton._shadowHeight,
+         height: height + OnBoardButton._shadowHeight,
          width: 150,
          child: Stack(
            children: [
              Positioned(
                bottom: 0,
                child: Container(
-                 height: _height,
+                 height: height,
                  width: 500,
                  decoration: const BoxDecoration(
                    color: Color.fromARGB(255, 121, 121, 121),
@@ -57,7 +65,7 @@ Widget build(BuildContext context) {
                bottom: _position,
                duration:const Duration(milliseconds: 70),
                child: Container(
-                 height: _height,
+                 height: height,
                  width: 500,
                  decoration: const BoxDecoration(
                    color: Color.fromARGB(255, 223, 223, 223),

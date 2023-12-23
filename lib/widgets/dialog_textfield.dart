@@ -5,11 +5,14 @@ class CustomDialogTextField extends StatefulWidget {
   CustomDialogTextField({
     super.key,
     required this.hint,
-    required this.title
+    required this.title,
+    required this.controller,
+    required this.label,
   });
+  String label;
   String title;
   String hint;
-
+  TextEditingController controller; 
   @override
   State<CustomDialogTextField> createState() => CustomTextFieldState();
 }
@@ -20,14 +23,13 @@ class CustomTextFieldState extends State<CustomDialogTextField> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-
         Text(widget.title,style: const TextStyle(fontFamily: 'sen',fontSize: 16,fontWeight: FontWeight.bold),),
         const SizedBox(height: 5,),
         TextField(
+          controller: widget.controller,
             style: const TextStyle(color: Color.fromARGB(255, 34, 34, 34)), 
             decoration: InputDecoration(
-              hintText: widget.hint,
-              hintStyle: const TextStyle(color: Color.fromARGB(255, 116, 116, 116)), 
+              labelText: widget.label,
               filled: true,
               fillColor: const Color.fromARGB(255, 231, 231, 231),
               border: OutlineInputBorder(

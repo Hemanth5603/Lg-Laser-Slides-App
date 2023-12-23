@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:laser_slides/controllers/osc_controller.dart';
 import 'package:laser_slides/widgets/slides_button.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
-
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  OSCController oscController = Get.put(OSCController());
+
+  @override
+  void initState(){
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +30,9 @@ class _HomePageState extends State<HomePage> {
               crossAxisSpacing: 0,
               mainAxisSpacing: 0,
             ),
-            itemBuilder: (context,index){
-              return CustomButton(index: index,);
+            itemBuilder: (context,index){ 
+        
+              return CustomButton(index: index,controller: oscController,);
             },
           ),
         )

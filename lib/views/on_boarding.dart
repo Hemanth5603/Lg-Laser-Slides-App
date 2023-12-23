@@ -1,7 +1,9 @@
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:laser_slides/models/boxes.dart';
+import 'package:laser_slides/models/slide.dart';
 import 'package:laser_slides/views/home.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -18,23 +20,27 @@ class _OnBoardingState extends State<OnBoarding> {
   late Image image3;
 
   @override
-  void initState() {
+  void initState(){
     image1 = Image.asset("assets/images/laser1.jpg");
     image2 = Image.asset("assets/images/lg2.png");
     super.initState();
+    initDB();
+  }
+
+  void initDB(){
+    if(boxSLides.isEmpty){
+      for(int i = 0;i<18;i++){
+        boxSLides.put("$i", Slide(label: "Slide ${i+1}", command: "0 1"));
+      }
+    }
   }
 
   @override
   void didChangeDependencies() {
-    if (kDebugMode) {
-      print("called");
-    }
     precacheImage(image1.image, context);
     precacheImage(image2.image, context);
     super.didChangeDependencies();
   }
-
-
 
   @override
   Widget build(BuildContext context) {

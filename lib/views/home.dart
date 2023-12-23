@@ -105,7 +105,6 @@ class _HomeState extends State<Home> {
                                             ),
                                           ),
                                           onTap: (){
-                                            print(oscController.outgoingIpController.text);
                                             Get.back();
                                           },
                                       ),

@@ -1,3 +1,4 @@
+import 'package:floating_snackbar/floating_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:laser_slides/constants/app_constants.dart';
@@ -21,6 +22,7 @@ class _HomeState extends State<Home> {
     const About()
   ];
   OSCController oscController = Get.put(OSCController());
+  bool isChecked = false;
 
 
   @override
@@ -72,6 +74,7 @@ class _HomeState extends State<Home> {
                               SizedBox(
                                 height: h * 0.46,
                                 child: ListView(
+                                  
                                   children: [
                                     const Text("Outgoing",style: TextStyle(fontFamily: 'sen',fontSize: 20,fontWeight: FontWeight.bold),),
                                     const SizedBox(height: 10,),
@@ -83,6 +86,14 @@ class _HomeState extends State<Home> {
                                     const SizedBox(height: 20,),
                                     const Text("Incomming",style: TextStyle(fontFamily: 'sen',fontSize: 20,fontWeight: FontWeight.bold),),
                                     const SizedBox(height: 10,),
+                                    /*Checkbox(
+                                      value: isChecked,
+                                      onChanged: (bool? value){
+                                        setState(() {
+                                          isChecked = value!;
+                                        });
+                                      }
+                                    ),*/
                                     CustomTextField(title:"IP Address",hint:"127.0.0.1",textController: oscController.incomingIpController),
                                     const SizedBox(height: 15,),
                                     CustomTextField(title:"PORT",hint:"8000",textController: oscController.inPortController),
@@ -105,6 +116,26 @@ class _HomeState extends State<Home> {
                                             ),
                                           ),
                                           onTap: (){
+                                            bool check = oscController.checkConnection();
+                                            if(check){
+                                              FloatingSnackBar( 
+                                                message: 'Connection Successful 😇', 
+                                                context: context, 
+                                                textColor: Colors.black, 
+                                                textStyle: const TextStyle(color: Color.fromARGB(255, 255, 255, 255),), 
+                                                duration: const Duration(milliseconds: 4000), 
+                                                backgroundColor: Colors.green, 
+                                                ); 
+                                            }else{
+                                              FloatingSnackBar( 
+                                                message: 'Connection unsuccessful 😥', 
+                                                context: context, 
+                                                textColor: Colors.black, 
+                                                textStyle: const TextStyle(color: Color.fromARGB(255, 255, 255, 255),), 
+                                                duration: const Duration(milliseconds: 4000), 
+                                                backgroundColor: Colors.red, 
+                                              ); 
+                                            }
                                             Get.back();
                                           },
                                       ),

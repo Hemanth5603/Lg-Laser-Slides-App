@@ -12,7 +12,8 @@ class OSCController extends GetxController{
   final startPathController = TextEditingController();
   final inPortController = TextEditingController();
   
-  final buttonLabelController = TextEditingController();
+  final buttonLabelController = TextEditingController(text: "Slide");
+  final pathController = TextEditingController(text: '/beyond/general/startcue');
   final commandController = TextEditingController();
   final buttonReleasedController = TextEditingController();
 
@@ -20,9 +21,20 @@ class OSCController extends GetxController{
   late InternetAddress address = InternetAddress(outgoingIpController.text);
   late final client = OSCSocket(destination: address,destinationPort: int.parse(outPortController.text));
   
+  bool checkConnection(){
+    final message = OSCMessage(pathController.text,
+      arguments: [0,0]); 
+    try {
+      client.send(message);
+      return true;
+    } catch (e) {      
+      return false;
+    }
+  }
+
   // send commands to beyond
   void sendMessage(command){
-    final message = OSCMessage('/beyond/general/startcue',
+    final message = OSCMessage(pathController.text,
       arguments: [
         int.parse(command.toString().substring(0,1)),
         int.parse(command.toString().substring(2,3))

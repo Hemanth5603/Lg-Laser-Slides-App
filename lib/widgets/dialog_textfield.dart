@@ -27,9 +27,10 @@ class CustomTextFieldState extends State<CustomDialogTextField> {
         const SizedBox(height: 5,),
         TextField(
           controller: widget.controller,
-            style: const TextStyle(color: Color.fromARGB(255, 34, 34, 34)), 
+            style: const TextStyle(color: Color.fromARGB(255, 34, 34, 34),fontFamily: 'sen'), 
             decoration: InputDecoration(
-              labelText: widget.label,
+              hintText: widget.hint,
+              hintStyle: const TextStyle(color: Color.fromARGB(255, 77, 77, 77)),
               filled: true,
               fillColor: const Color.fromARGB(255, 231, 231, 231),
               border: OutlineInputBorder(

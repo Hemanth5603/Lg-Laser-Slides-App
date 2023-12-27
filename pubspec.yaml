@@ -9,16 +9,21 @@ environment:
 dependencies:
   analyzer: ^6.2.0
   animated_splash_screen: ^1.3.0
+  animated_theme_switcher: ^2.0.10
   build_runner: ^2.4.7
+  confetti: ^0.7.0
+  day_night_switcher: ^0.2.0+1
   floating_snackbar: ^1.0.3+1
   flutter:
     sdk: flutter
   flutter_launcher_icons: ^0.13.1
+  flutter_staggered_animations: ^1.1.1
   get: ^4.6.6
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   hive_generator: ^2.0.1
   osc: ^1.0.0
+  shared_preferences: ^2.2.2
   smooth_page_indicator: ^1.1.0
 
 dev_dependencies:

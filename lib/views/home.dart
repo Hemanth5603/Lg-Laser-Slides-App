@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:confetti/confetti.dart';
 import 'package:floating_snackbar/floating_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,11 +21,19 @@ class _HomeState extends State<Home> {
   int? selectedIndex = 0;
 
   List screens = [
-    const HomePage(),
+    HomePage(),
     const About()
   ];
   OSCController oscController = Get.put(OSCController());
   bool isChecked = false;
+  late ConfettiController confettiController;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    confettiController = ConfettiController(duration: Duration(seconds: 2));
+  }
 
 
   @override
@@ -32,6 +43,8 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        backgroundColor: Color.fromARGB(255, 240, 204, 204),
+        title: const Text("Laser Slides",style: TextStyle(fontFamily: 'sen',fontSize: 20),),
         actions: [
           InkWell(
               child:const  Padding(
@@ -40,121 +53,133 @@ class _HomeState extends State<Home> {
             ),
             onTap: (){
               Get.bottomSheet(
-                Container(
-                  height: h * 0.8,
-                  padding:const  EdgeInsets.all(10),
-                  decoration:const BoxDecoration(
-                    color: Color.fromARGB(255, 241, 241, 241),
-                    borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15))
-                  ),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 25,
-                          height: 5,
-                          decoration: const BoxDecoration(
-                             color: Colors.grey,
-                            borderRadius: BorderRadius.all(Radius.circular(10))
-                          ),
-                        ),
-                        const SizedBox(height: 15,),
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const Text("Network Settings",
-                                style: TextStyle(
-                                  fontFamily: 'sen',
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold
-                                ),
+                Stack(
+                  children: [
+                    Container(
+                      height: h * 0.8,
+                      padding:const  EdgeInsets.all(10),
+                      decoration:const BoxDecoration(
+                        color: Color.fromARGB(255, 241, 241, 241),
+                        borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15))
+                      ),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 25,
+                              height: 5,
+                              decoration: const BoxDecoration(
+                                 color: Colors.grey,
+                                borderRadius: BorderRadius.all(Radius.circular(10))
                               ),
-                              const SizedBox(height:15,),
-                              SizedBox(
-                                height: h * 0.46,
-                                child: ListView(
-                                  
-                                  children: [
-                                    const Text("Outgoing",style: TextStyle(fontFamily: 'sen',fontSize: 20,fontWeight: FontWeight.bold),),
-                                    const SizedBox(height: 10,),
-                                    CustomTextField(title:"IP Address",hint:"127.0.0.1",textController: oscController.outgoingIpController,),
-                                    const SizedBox(height: 15,),
-                                    CustomTextField(title:"PORT",hint:"8000",textController: oscController.outPortController),
-                                    const SizedBox(height: 15,),
-                                    CustomTextField(title:"Start Path",hint:"/",textController: oscController.startPathController),
-                                    const SizedBox(height: 20,),
-                                    const Text("Incomming",style: TextStyle(fontFamily: 'sen',fontSize: 20,fontWeight: FontWeight.bold),),
-                                    const SizedBox(height: 10,),
-                                    /*Checkbox(
-                                      value: isChecked,
-                                      onChanged: (bool? value){
-                                        setState(() {
-                                          isChecked = value!;
-                                        });
-                                      }
-                                    ),*/
-                                    CustomTextField(title:"IP Address",hint:"127.0.0.1",textController: oscController.incomingIpController),
-                                    const SizedBox(height: 15,),
-                                    CustomTextField(title:"PORT",hint:"8000",textController: oscController.inPortController),
-                                    const SizedBox(height: 15,),
-                                    GestureDetector(
-                                      onTap: (){
-                                        Get.back();
-                                      },
-                                      child:GestureDetector(
-                                        child: Container(
-                                          width: w * 0.95,
-                                            height: h * 0.07,
-                                            decoration: BoxDecoration(
-                                              border: Border.all(color:const Color.fromARGB(255, 62, 62, 62) ),
-                                              color: const Color.fromARGB(255, 247, 247, 247),
-                                              borderRadius:const  BorderRadius.all(Radius.circular(10)),
-                                            ),
-                                            child:const  Center(
-                                              child: Text("Save Changes",style: TextStyle(fontFamily: 'sen',fontSize: 20,fontWeight: FontWeight.bold),),
-                                            ),
-                                          ),
+                            ),
+                            const SizedBox(height: 15,),
+                            Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  const Text("Network Settings",
+                                    style: TextStyle(
+                                      fontFamily: 'sen',
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                  const SizedBox(height:15,),
+                                  SizedBox(
+                                    height: h * 0.46,
+                                    child: ListView(
+                                      
+                                      children: [
+                                        const Text("Outgoing",style: TextStyle(fontFamily: 'sen',fontSize: 20,fontWeight: FontWeight.bold),),
+                                        const SizedBox(height: 10,),
+                                        CustomTextField(title:"IP Address",hint:"127.0.0.1",textController: oscController.outgoingIpController,),
+                                        const SizedBox(height: 15,),
+                                        CustomTextField(title:"PORT",hint:"8000",textController: oscController.outPortController),
+                                        const SizedBox(height: 15,),
+                                        CustomTextField(title:"Start Path",hint:"/",textController: oscController.startPathController),
+                                        const SizedBox(height: 20,),
+                                        const Text("Incomming",style: TextStyle(fontFamily: 'sen',fontSize: 20,fontWeight: FontWeight.bold),),
+                                        const SizedBox(height: 10,),
+                                        /*Checkbox(
+                                          value: isChecked,
+                                          onChanged: (bool? value){
+                                            setState(() {
+                                              isChecked = value!;
+                                            });
+                                          }
+                                        ),*/
+                                        CustomTextField(title:"IP Address",hint:"127.0.0.1",textController: oscController.incomingIpController),
+                                        const SizedBox(height: 15,),
+                                        CustomTextField(title:"PORT",hint:"8000",textController: oscController.inPortController),
+                                        const SizedBox(height: 15,),
+                                        GestureDetector(
                                           onTap: (){
-                                            bool check = oscController.checkConnection();
-                                            if(check){
-                                              FloatingSnackBar( 
-                                                message: 'Connection Successful 😇', 
-                                                context: context, 
-                                                textColor: Colors.black, 
-                                                textStyle: const TextStyle(color: Color.fromARGB(255, 255, 255, 255),), 
-                                                duration: const Duration(milliseconds: 4000), 
-                                                backgroundColor: Colors.green, 
-                                                ); 
-                                            }else{
-                                              FloatingSnackBar( 
-                                                message: 'Connection unsuccessful 😥', 
-                                                context: context, 
-                                                textColor: Colors.black, 
-                                                textStyle: const TextStyle(color: Color.fromARGB(255, 255, 255, 255),), 
-                                                duration: const Duration(milliseconds: 4000), 
-                                                backgroundColor: Colors.red, 
-                                              ); 
-                                            }
                                             Get.back();
                                           },
-                                      ),
-                                    )                
-                                  ],
-                                ),
-                              ),
-                            ],
-                          )
-                      ],
+                                          child:GestureDetector(
+                                            child: Container(
+                                              width: w * 0.95,
+                                                height: h * 0.07,
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(color:const Color.fromARGB(255, 62, 62, 62) ),
+                                                  color: const Color.fromARGB(255, 247, 247, 247),
+                                                  borderRadius:const  BorderRadius.all(Radius.circular(10)),
+                                                ),
+                                                child:const  Center(
+                                                  child: Text("Save Changes",style: TextStyle(fontFamily: 'sen',fontSize: 20,fontWeight: FontWeight.bold),),
+                                                ),
+                                              ),
+                                              onTap: (){
+                                                bool check = oscController.checkConnection();
+                                                if(check){
+                                                  FloatingSnackBar( 
+                                                    message: 'Connection Successful 😇', 
+                                                    context: context, 
+                                                    textColor: Colors.black, 
+                                                    textStyle: const TextStyle(color: Color.fromARGB(255, 255, 255, 255),), 
+                                                    duration: const Duration(milliseconds: 4000), 
+                                                    backgroundColor: Colors.green, 
+                                                    ); 
+                                                }else{
+                                                  confettiController.play();
+                                                  FloatingSnackBar( 
+                                                    message: 'Connection unsuccessful 😥', 
+                                                    context: context, 
+                                                    textColor: Colors.black, 
+                                                    textStyle: const TextStyle(color: Color.fromARGB(255, 255, 255, 255),), 
+                                                    duration: const Duration(milliseconds: 4000), 
+                                                    backgroundColor: Colors.red, 
+                                                  ); 
+                                                }
+                                                Get.back();
+                                              },
+                                          ),
+                                        )                
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              )
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
+                    Align(
+                      alignment: Alignment.bottomCenter,
+                      child: ConfettiWidget(
+                        confettiController: confettiController,
+                        blastDirection: -pi / 2,
+                      )
+
+
+                    )
+                  ],
                 )
               );
             },
           )
         ],
-        backgroundColor: const Color.fromARGB(255, 39, 39, 39),
-        title: const Text("Laser Slides",style: TextStyle(fontFamily: 'sen',fontSize: 20),),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items:AppConstants.bottomNavBarItems,

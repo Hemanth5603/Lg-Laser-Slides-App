@@ -5,23 +5,21 @@ import 'package:laser_slides/models/slide.dart';
 import 'package:laser_slides/widgets/dialog_textfield.dart';
 
 // ignore: must_be_immutable
-class CustomButton extends StatefulWidget {
+class CustomButton2 extends StatefulWidget {
   static const double _shadowHeight = 8;
-  CustomButton({
+  CustomButton2({
     super.key,
     required this.index,
-    required this.controller,
-    required this.state,
+    required this.controller
 
   });
   int index;
   OSCController controller;
-  bool state;
   @override
-  State<CustomButton> createState() => _CustomButtonState();
+  State<CustomButton2> createState() => _CustomButton2State();
 }
 
-class _CustomButtonState extends State<CustomButton> {
+class _CustomButton2State extends State<CustomButton2> {
 double _position = 6;
 
 
@@ -30,28 +28,17 @@ double _position = 6;
 Widget build(BuildContext context) {
   double h = MediaQuery.of(context).size.height;
   Slide slide = boxSLides.get(widget.index.toString());
-  const double height = 110 - CustomButton._shadowHeight;
+  const double height = 110 - CustomButton2._shadowHeight;
   double rotationAngle = 0.0;
  return Scaffold(
    body: Center(
      child: GestureDetector(
-       onTapUp: (_) {
-         setState(() {
-           _position = 6;
-         });
-       },
-       onTapDown: (_) {
-         setState(() {
-           _position = 0;
-           rotationAngle += 45;
-         });
-
-         widget.controller.sendMessage(slide.command);
-       },
-       onTapCancel: () {
-         setState(() {
-           _position = 6;
-         });
+       onTap: (){
+        setState(() {
+          rotationAngle += 1/4;
+        });
+        print("tap");
+         //widget.controller.sendMessage(slide.command);
        },
        onDoubleTap: (){
         showDialog(
@@ -152,75 +139,23 @@ Widget build(BuildContext context) {
           }
         ); 
        },
-       child: GestureDetector(
-         child: Transform.rotate(
-          angle: rotationAngle * (3.14/180),
-           child: SizedBox(
-             height: height + CustomButton._shadowHeight,
-             width: 110,
-             child: Stack(
-               children: [
-                 Positioned(
-                   bottom: 0,
-                   child: Container(
-                     height: height,
-                     width: 110,
-                     decoration: BoxDecoration(
-                       color: widget.index % 2 ==0 ? Color.fromARGB(255, 233, 197, 197): Color.fromARGB(255, 181, 243, 173),
-                       borderRadius: BorderRadius.all(
-                         Radius.circular(16),
-                       ),
-                     ),
-                   ),
-                 ),
-                 AnimatedPositioned(
-                   curve: Curves.easeIn,
-                   bottom: _position,
-                   duration:const Duration(milliseconds: 70),
-                   child: Container(
-                     height: height,
-                     width: 110,
-                     decoration:  BoxDecoration(
-                      gradient:widget.index % 2 ==0 ? const LinearGradient(
-                        colors: [
-                          Colors.white,
-                          Color.fromARGB(255, 244, 194, 194)
-                        ],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight
-                      ) : 
-                      const LinearGradient(
-                        colors: [
-                          Colors.white,
-                          Color.fromARGB(255, 203, 245, 197)
-                        ],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight
-                      ),
-                       color: const Color.fromARGB(213, 55, 55, 55), 
-                       borderRadius:const BorderRadius.all(
-                         Radius.circular(16),
-                       ),
-                     ),
-                     child: Center(
-                       child: Text(
-                        slide.label,
-                         style: const TextStyle(
-                           color: Color.fromARGB(255, 27, 27, 27),
-                           fontSize: 22,
-                           fontFamily: 'sen'
-                         ),
-                       ),
-                     ),
-                   ),
-                 ),
-               ],
-             ),
-           ),
-         ),
-       ),
+       child: AnimatedRotation(
+          turns: rotationAngle,
+          duration: Duration(seconds: 1),
+          child: Container(
+            width: 100.0,
+            height: 100.0,
+            color: Colors.blue,
+            child: Center(
+              child: Text(
+                'Tap me!',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ),
+        ),
+      ),
      ),
-   ),
- );
-}
+    );
+  }
 }

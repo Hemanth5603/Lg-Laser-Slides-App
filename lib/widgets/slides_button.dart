@@ -22,7 +22,7 @@ class CustomButton extends StatefulWidget {
 }
 
 class _CustomButtonState extends State<CustomButton> {
-double _position = 6;
+double _position = 8;
 
 
 
@@ -30,14 +30,14 @@ double _position = 6;
 Widget build(BuildContext context) {
   double h = MediaQuery.of(context).size.height;
   Slide slide = boxSLides.get(widget.index.toString());
-  const double height = 110 - CustomButton._shadowHeight;
+  const double height = 140 - CustomButton._shadowHeight;
   double rotationAngle = 0.0;
  return Scaffold(
    body: Center(
      child: GestureDetector(
        onTapUp: (_) {
          setState(() {
-           _position = 6;
+           _position = 8;
          });
        },
        onTapDown: (_) {
@@ -50,7 +50,7 @@ Widget build(BuildContext context) {
        },
        onTapCancel: () {
          setState(() {
-           _position = 6;
+           _position = 8;
          });
        },
        onDoubleTap: (){
@@ -157,17 +157,17 @@ Widget build(BuildContext context) {
           angle: rotationAngle * (3.14/180),
            child: SizedBox(
              height: height + CustomButton._shadowHeight,
-             width: 110,
+             width: 140,
              child: Stack(
                children: [
                  Positioned(
                    bottom: 0,
                    child: Container(
                      height: height,
-                     width: 110,
+                     width: 140,
                      decoration: BoxDecoration(
-                       color: widget.index % 2 ==0 ? Color.fromARGB(255, 233, 197, 197): Color.fromARGB(255, 181, 243, 173),
-                       borderRadius: BorderRadius.all(
+                       color: widget.index % 2 ==0 ? const Color.fromARGB(117, 0, 107, 194): const Color.fromARGB(136, 194, 0, 3),
+                       borderRadius: const BorderRadius.all(
                          Radius.circular(16),
                        ),
                      ),
@@ -179,20 +179,20 @@ Widget build(BuildContext context) {
                    duration:const Duration(milliseconds: 70),
                    child: Container(
                      height: height,
-                     width: 110,
+                     width: 140,
                      decoration:  BoxDecoration(
                       gradient:widget.index % 2 ==0 ? const LinearGradient(
                         colors: [
-                          Colors.white,
-                          Color.fromARGB(255, 244, 194, 194)
+                          Color.fromARGB(215, 0, 107, 194),
+                          Color.fromARGB(255, 0, 107, 194),
                         ],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight
                       ) : 
                       const LinearGradient(
                         colors: [
-                          Colors.white,
-                          Color.fromARGB(255, 203, 245, 197)
+                          Color.fromARGB(136, 194, 0, 3),
+                          Color.fromARGB(255, 194, 0, 3),
                         ],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight
@@ -206,9 +206,10 @@ Widget build(BuildContext context) {
                        child: Text(
                         slide.label,
                          style: const TextStyle(
-                           color: Color.fromARGB(255, 27, 27, 27),
-                           fontSize: 22,
-                           fontFamily: 'sen'
+                           color: Color.fromARGB(255, 255, 255, 255),
+                           fontSize: 25,
+                           fontFamily: 'sen',
+                           fontWeight: FontWeight.bold
                          ),
                        ),
                      ),

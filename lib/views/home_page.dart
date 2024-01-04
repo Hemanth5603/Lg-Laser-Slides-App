@@ -1,91 +1,61 @@
-import 'dart:math';
-import 'package:confetti/confetti.dart';
-import 'package:floating_snackbar/floating_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
-import 'package:laser_slides/constants/app_constants.dart';
 import 'package:laser_slides/controllers/osc_controller.dart';
-import 'package:laser_slides/views/about.dart';
-import 'package:laser_slides/views/home_page.dart';
-import 'package:laser_slides/widgets/custom_card.dart';
-import 'package:laser_slides/widgets/custom_textfield.dart';
+import 'package:laser_slides/widgets/slides_button.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
-
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
   @override
-  State<Home> createState() => _HomeState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomeState extends State<Home> {
-  int? selectedIndex = 0;
-
-  List screens = [
-    HomePage(),
-    const About()
-  ];
+class _HomePageState extends State<HomePage> {
   OSCController oscController = Get.put(OSCController());
-  bool isChecked = false;
-  late ConfettiController confettiController;
-
+  double turn = 0.0;
+  bool state = false;
   @override
-  void initState() {
+  void initState(){
     super.initState();
-    confettiController = ConfettiController(duration: Duration(seconds: 2));
   }
-
 
   @override
   Widget build(BuildContext context) {
-    double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
-    return Scaffold(
-      body: Stack(
-        children: [
-        Container(
-          height: h * 0.15,
-          width: w,
-            padding: EdgeInsets.only(left: 30,top:60),
-            child: Text("Welcome to Laser Slides !",style: TextStyle(fontFamily: 'sen',fontSize: 60),),
-        ),
-        Positioned(
-          top: h * 0.16,
-          child: Container(
-            height: h * 0.08,
-            width: w,
-              padding: EdgeInsets.only(left: 30,top:0),
-              child: const Text("Your ultimate presentation companion",style: TextStyle(fontFamily: 'sen',fontSize: 30,color: Colors.grey),),
-          ),
-        ),
-          Center(
-            child: Container(
-              width: w,
-              height: h * 0.7,
-              padding: const EdgeInsets.only(top:100,left: 40,right: 40),
-              child: AnimationLimiter(
-                child: GridView.count(
-                  crossAxisSpacing: 30,
-                  crossAxisCount:  MediaQuery.of(context).size.width > 1000 ? 3 : 2,
-                    children: List.generate(3,
-                      (int index){
-                        return AnimationConfiguration.staggeredGrid(
-                          position: index, 
-                          duration: const Duration(milliseconds: 375),
-                          columnCount:  MediaQuery.of(context).size.width > 1000 ? 3 : 2,
-                          child: ScaleAnimation(
-                            child: FadeInAnimation(
-                              child: CustomCard(index: index,oscController: oscController,),
-                            ),
-                          )
-                        );
-                      }
-                    ),
-                  ),
+    double w = MediaQuery.of(context).size.width;
+    
+    return  Scaffold(
+        body: SafeArea(
+          child: Stack(
+            children: [
+              Padding(
+                padding:const EdgeInsets.only(top:30),
+                child: Stack(
+                  children: [
+                    AnimationLimiter(
+                      child: GridView.count(
+                        crossAxisCount:  MediaQuery.of(context).size.width > 1000 ? 6 : 3,
+                        children: List.generate(18,
+                          (int index){
+                            return AnimationConfiguration.staggeredGrid(
+                              position: index, 
+                              duration: const Duration(milliseconds: 375),
+                              columnCount:  MediaQuery.of(context).size.width > 1000 ? 6 : 3,
+                              child: ScaleAnimation(
+                                curve: Curves.easeInOutQuad,
+                                child: FadeInAnimation(
+                                  child: CustomButton(index: index,controller: oscController,state: state)
+                                ),
+                              )
+                            );
+                          }
+                        ),
+                      ),
+                    ),   
+                  ],
+                ),
               ),
-            ),
-          ),
-          Positioned(
+              Positioned(
             bottom: -120,
             left: -20,
             child: Container(
@@ -177,7 +147,7 @@ class _HomeState extends State<Home> {
               height: 200,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(200),
-                color: Color.fromARGB(222, 244, 67, 54)
+                color: const Color.fromARGB(222, 244, 67, 54)
               ),
             ),
           ),Positioned(
@@ -188,22 +158,13 @@ class _HomeState extends State<Home> {
               height: 200,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(200),
-                color: Color.fromARGB(225, 76, 175, 79)
+                color: const Color.fromARGB(225, 76, 175, 79)
               ),
             ),
           ),
-        ],
-      ),
-    );
+            ],
+          )
+        ),
+      );
   }
 }
-
-
-
-
-/*
-
-SafeArea(
-        child: screens[selectedIndex!],
-      ),
-*/ 

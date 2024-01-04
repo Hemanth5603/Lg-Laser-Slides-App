@@ -27,6 +27,7 @@ double _position = 6;
 @override
 Widget build(BuildContext context) {
   double h = MediaQuery.of(context).size.height;
+  double w = MediaQuery.of(context).size.width;
   Slide slide = boxSLides.get(widget.index.toString());
   const double height = 110 - CustomButton2._shadowHeight;
   double rotationAngle = 0.0;
@@ -51,9 +52,9 @@ Widget build(BuildContext context) {
             elevation: 0,
             backgroundColor: Colors.transparent,
             child: Container(
-              height: h * 0.61,
-              padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 20),
-              width: MediaQuery.of(context).size.width > 1000 ? 600 : 300 ,
+              height: h * 0.7,
+              padding: const EdgeInsets.symmetric(vertical: 30,horizontal: 30),
+              width: MediaQuery.of(context).size.width > 1000 ? 700 : 300 ,
               decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
                 color: Colors.white,

@@ -89,7 +89,7 @@ class _OnBoardingState extends State<OnBoarding> {
                 ),
                 child: InkWell(
                   onTap: (){
-                    Get.to(const Home(),transition: Transition.downToUp,duration:const Duration(milliseconds: 500));
+                    Get.to(const Home(),transition: Transition.downToUp,duration:const Duration(milliseconds: 400));
                   },
                   child:const Center(
                     child: Text("Continue",style: TextStyle(fontFamily: 'sen', color: Color.fromARGB(255, 33, 33, 33),fontSize: 20),)

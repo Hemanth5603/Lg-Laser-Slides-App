@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:laser_slides/controllers/osc_controller.dart';
+import 'package:laser_slides/widgets/circle.dart';
 import 'package:laser_slides/widgets/slides_button.dart';
 
 class HomePage extends StatefulWidget {
@@ -34,7 +35,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     AnimationLimiter(
                       child: GridView.count(
-                        crossAxisCount:  MediaQuery.of(context).size.width > 1000 ? 6 : 3,
+                        crossAxisCount:  MediaQuery.of(context).size.width > 1000 ? 6 : 2,
                         children: List.generate(18,
                           (int index){
                             return AnimationConfiguration.staggeredGrid(
@@ -55,113 +56,15 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              Positioned(
-            bottom: -120,
-            left: -20,
-            child: Container(
-              width: 200,
-              height: 200,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(200),
-                color: const Color.fromARGB(218, 33, 149, 243)
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: -120,
-            left: 150,
-            child: Container(
-              width: 200,
-              height: 200,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(200),
-                color: const Color.fromARGB(218, 244, 67, 54)
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: -120,
-            left: 300,
-            child: Container(
-              width: 200,
-              height: 200,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(200),
-                color: const Color.fromARGB(215, 255, 235, 59)
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: -120,
-            left: 450,
-            child: Container(
-              width: 200,
-              height: 200,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(200),
-                color: const Color.fromARGB(213, 76, 175, 79)
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: -120,
-            left: 600,
-            child: Container(
-              width: 200,
-              height: 200,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(200),
-                color: const Color.fromARGB(227, 244, 67, 54)
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: -120,
-            left: 750,
-            child: Container(
-              width: 200,
-              height: 200,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(200),
-                color: const Color.fromARGB(218, 255, 235, 59)
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: -120,
-            left: 900,
-            child: Container(
-              width: 200,
-              height: 200,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(200),
-                color: const Color.fromARGB(222, 33, 149, 243)
-              ),
-            ),
-          ),
-          Positioned(
-            bottom: -120,
-            left: 1050,
-            child: Container(
-              width: 200,
-              height: 200,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(200),
-                color: const Color.fromARGB(222, 244, 67, 54)
-              ),
-            ),
-          ),Positioned(
-            bottom: -120,
-            left: 1200,
-            child: Container(
-              width: 200,
-              height: 200,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(200),
-                color: const Color.fromARGB(225, 76, 175, 79)
-              ),
-            ),
-          ),
+              circle(w, h, -20, const Color.fromARGB(218, 33, 149, 243)),
+              circle(w, h, 150, const Color.fromARGB(218, 244, 67, 54)),
+              circle(w, h, 300, const Color.fromARGB(215, 255, 235, 59)),
+              circle(w, h, 450, const Color.fromARGB(213, 76, 175, 79)),
+              circle(w, h, 600, const Color.fromARGB(218, 33, 149, 243)),
+              circle(w, h, 750, const Color.fromARGB(218, 244, 67, 54)),
+              circle(w, h, 900, const Color.fromARGB(215, 255, 235, 59)),
+              circle(w, h, 1050, const Color.fromARGB(213, 76, 175, 79)),
+              circle(w, h, 1200, const Color.fromARGB(218, 33, 149, 243)),
             ],
           )
         ),

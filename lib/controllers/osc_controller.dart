@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:osc/osc.dart';
@@ -22,8 +21,11 @@ class OSCController extends GetxController{
   late final client = OSCSocket(destination: address,destinationPort: int.parse(outPortController.text));
   
   bool checkConnection(){
-    final message = OSCMessage(pathController.text,
-      arguments: [0,0]); 
+    final message = OSCMessage(
+      pathController.text,
+      arguments: [0,0]
+    ); 
+
     try {
       client.send(message);
       return true;

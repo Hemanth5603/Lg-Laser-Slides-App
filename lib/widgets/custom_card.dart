@@ -31,8 +31,11 @@ class _CustomCardState extends State<CustomCard> {
     double h = MediaQuery.of(context).size.height;
     return GestureDetector(
       onTap: (){
-        if(widget.index == 0) Get.to(HomePage(),transition: Transition.downToUp,duration: Duration(milliseconds: 400));
-        else if(widget.index == 1) Get.to(About(),transition: Transition.upToDown,duration: Duration(milliseconds: 400));
+        if(widget.index == 0) {
+          Get.to(const HomePage(),transition: Transition.downToUp,duration: Duration(milliseconds: 400));
+        } else if(widget.index == 1){
+          Get.to(const About(),transition: Transition.upToDown,duration: const Duration(milliseconds: 400));
+        } 
         else{
           Get.bottomSheet(
             Stack(
@@ -113,7 +116,7 @@ class _CustomCardState extends State<CustomCard> {
                                                     textColor: Colors.black, 
                                                     textStyle: const TextStyle(color: Color.fromARGB(255, 255, 255, 255),), 
                                                     duration: const Duration(milliseconds: 4000), 
-                                                    backgroundColor: Color.fromARGB(255, 67, 152, 70), 
+                                                    backgroundColor: const Color.fromARGB(255, 67, 152, 70), 
                                                     ); 
                                                 }else{
                                                   FloatingSnackBar( 
@@ -146,11 +149,11 @@ class _CustomCardState extends State<CustomCard> {
       child: Stack(
         children: [
           Container(
-            width: w * 0.4,
-            height: h * 0.6,
+            width: MediaQuery.of(context).size.width > 1000 ? w * 0.4 : w* 0.6,
+            height:MediaQuery.of(context).size.width > 1000 ? h * 0.6: h* 0.55,
             margin:const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius:w > 1000 ? BorderRadius.circular(30) : BorderRadius.circular(10),
               gradient: LinearGradient(
                 colors: AppConstants.colors[widget.index],
                 begin: Alignment.topLeft,
@@ -161,20 +164,20 @@ class _CustomCardState extends State<CustomCard> {
 
           Positioned(
             top:50,
-            left: 50,
-            child: Text(AppConstants.titles[widget.index],style: TextStyle(fontFamily:'sen',fontSize: 50,fontWeight: FontWeight.bold,color: Colors.white),),
+            left: w > 1000 ? 50 : 40,
+            child: Text(AppConstants.titles[widget.index],style: TextStyle(fontFamily:'sen',fontSize:w > 1000 ? 50: 30,fontWeight: FontWeight.bold,color: Colors.white),),
           ),
           Positioned(
-            top:120,
-            left: 50,
-            child: Text(AppConstants.subtitles[widget.index],style: TextStyle(fontFamily:'sen',fontSize: 20,color: Colors.white),),
+            top: w > 1000 ? 120 : 100,
+            left: w > 1000 ? 50 : 40,
+            child: Text(AppConstants.subtitles[widget.index],style: TextStyle(fontFamily:'sen',fontSize:w>1000 ? 20 : 15,color: Colors.white),),
           ),
           Positioned( 
-            bottom: -20,
-            right:-15,
+            bottom:w > 1000 ? -20 : 20,
+            right: w > 1000 ?-15 : 50,
             child: Container(
-              width: 200,
-              height: 200,
+              width:w > 1000 ? 200 : 100,
+              height: w > 1000 ? 200 : 100,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(AppConstants.icons[widget.index])

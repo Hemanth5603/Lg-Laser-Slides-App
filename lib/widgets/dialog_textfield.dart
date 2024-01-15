@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
+
 class CustomDialogTextField extends StatefulWidget {
   CustomDialogTextField({
     super.key,
@@ -20,30 +20,34 @@ class CustomDialogTextField extends StatefulWidget {
 class CustomTextFieldState extends State<CustomDialogTextField> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(widget.title,style: const TextStyle(fontFamily: 'sen',fontSize: 16,fontWeight: FontWeight.bold),),
-        const SizedBox(height: 5,),
-        TextField(
-          controller: widget.controller,
-            style: const TextStyle(color: Color.fromARGB(255, 34, 34, 34),fontFamily: 'sen'), 
-            decoration: InputDecoration(
-              hintText: widget.hint,
-              hintStyle: const TextStyle(color: Color.fromARGB(255, 77, 77, 77)),
-              filled: true,
-              fillColor: const Color.fromARGB(255, 231, 231, 231),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                borderSide: const BorderSide(color: Color.fromARGB(255, 237, 237, 237)), 
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(widget.title,style: const TextStyle(fontFamily: 'sen',fontSize: 16,fontWeight: FontWeight.bold,color: Colors.white),),
+          const SizedBox(height: 5,),
+          Material(
+            borderRadius:BorderRadius.circular(10),
+            child: TextField(
+              controller: widget.controller,
+                style: const TextStyle(color: Color.fromARGB(255, 34, 34, 34),fontFamily: 'sen'), 
+                decoration: InputDecoration(
+                  hintText: widget.hint,
+                  hintStyle: const TextStyle(color: Color.fromARGB(255, 77, 77, 77)),
+                  filled: true,
+                  fillColor: Color.fromARGB(255, 255, 255, 255),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                    borderSide: BorderSide.none
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
               ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                borderSide: const BorderSide(color: Color.fromARGB(255, 27, 27, 27)),
-              ),
-            ),
           ),
-      ],
+        ],
+      ),
     );
   }
 }

@@ -8,6 +8,7 @@ The application is compatible with all the latest android versions of android st
 The laser slides application can be best viewed in Tablet devices with a minimum screen size of 8” inches.
 
 **Instructions:**
+
  -- Firstly, in order to use the laser slides application the system should have BEYOND software installed in the system.
 
  -- On the BEYOND application we must go to the “setting” -> “OSC” -> “OSC settings” and then look up for the IP address such as “192.168.29.219”.

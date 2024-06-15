@@ -40,7 +40,7 @@ class _HomeState extends State<Home> {
       body: Stack(
         children: [
         Container(
-          height: w > 1000 ?h * 0.15 : h * 0.12,
+          height: w > 1000 ?h * 0.2 : h * 0.12,
           width: w,
             padding:const EdgeInsets.only(left: 30,top:60),
             child:Text("Welcome to Laser Slides !",style: TextStyle(fontFamily: 'sen',fontSize: w > 1000 ? 60:25),),

@@ -1,4 +1,4 @@
-package com.example.laser_slides
+package com.coderxop.laserslides
 
 import io.flutter.embedding.android.FlutterActivity
 
